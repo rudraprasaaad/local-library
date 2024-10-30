@@ -1,8 +1,20 @@
-const Book = require("../models/book");
+const Book = require("../models/book.js");
+const Author = require("../models/author.js");
+const Genre = require("../models/genre.js");
+const BookInstance = require("../models/bookinstance.js");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Site Home Page");
+  const [
+    numBooks,
+    numBookInstances,
+    numAvailableBookInstances,
+    numAuthors,
+    numGenres,
+  ] = await Promise.all([
+    Book.countDocuments({}).exec(),
+    BookInstance.countDocuments({}).exec(),
+  ]);
 });
 
 // Display list of all books.
