@@ -14,7 +14,19 @@ exports.index = asyncHandler(async (req, res, next) => {
   ] = await Promise.all([
     Book.countDocuments({}).exec(),
     BookInstance.countDocuments({}).exec(),
+    BookInstance.countDocuments({ status: "Available" }).exec(),
+    Author.countDocuments({}).exec(),
+    Genre.countDocuments({}).exec(),
   ]);
+
+  res.render("index", {
+    title: "Local Library Name",
+    book_count: numBooks,
+    book_instances_count: numBookInstances,
+    book_instance_avaialable_count: numAvailableBookInstances,
+    author_count: numAuthors,
+    genre_count: numGenres,
+  });
 });
 
 // Display list of all books.
