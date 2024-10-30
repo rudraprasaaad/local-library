@@ -14,9 +14,8 @@ block content
             span.text-danger #{val.status}
           else
             span.text-warning #{val.status}
-          if val.status != 'Available'
-        	span  (Due: #{val.due_back_formatted} )
-
+          if val.status!='Available'
+            span  (Due: #{val.due_back_formatted})
 
   else
     p There are no book copies in this library.
