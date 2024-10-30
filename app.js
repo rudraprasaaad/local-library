@@ -6,6 +6,7 @@ const logger = require("morgan");
 const path = require("path");
 const indexRouter = require("./routes/index.js");
 const usersRouter = require("./routes/users.js");
+const catalogRouter = require("./routes/catalog.js");
 const app = express();
 const mongoose = require("mongoose");
 const { MongoOIDCError } = require("mongodb");
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/catalog", catalogRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
