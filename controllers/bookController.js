@@ -68,8 +68,8 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
   ]);
   res.render("book_form", {
     title: "Create Book",
-    author: allAuthors,
-    genre: allGenres,
+    authors: allAuthors,
+    genres: allGenres,
   });
 });
 
@@ -125,7 +125,7 @@ exports.book_create_post = [
         errors: errors.array(),
       });
     } else {
-      await Book.save();
+      await book.save();
       res.redirect(book.url);
     }
   }),
