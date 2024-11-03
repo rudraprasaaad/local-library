@@ -10,9 +10,9 @@ const catalogRouter = require("./routes/catalog.js");
 const app = express();
 const mongoose = require("mongoose");
 const { MongoOIDCError } = require("mongodb");
+require("dotenv").config();
 mongoose.set("strictQuery", "false");
-const mongoDB =
-  "mongodb+srv://rudra:rudra@cluster0.hvlfmqf.mongodb.net/local_library";
+const mongoDB = process.env.MONGO_URL;
 
 main().catch((err) => console.log(err));
 
