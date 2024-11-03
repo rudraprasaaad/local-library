@@ -1,7 +1,7 @@
 const BookInstance = require("../models/bookinstance.js");
+const Book = require("../models/book.js");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-const bookinstance = require("../models/bookinstance.js");
 
 // Display list of all BookInstances.
 exports.bookinstance_list = asyncHandler(async (req, res, next) => {
@@ -75,8 +75,8 @@ exports.bookinstance_create_post = [
       });
       return;
     } else {
-      await bookinstance.save();
-      res.redirect(bookinstance.url);
+      await bookInstance.save();
+      res.redirect(bookInstance.url);
     }
   }),
 ];
